@@ -113,6 +113,43 @@ client:on("ready", function()
 end)
 client:on("messageCreate", function(message)
     local comp = false
+
+    if not message.guild then 
+        if message.author == client.user or message.author.id=="1191836718098296923" or message.author.id=="1191922358143942677" then 
+            if message.content:match("(.*).*").lower == "/s" then 
+                local say = message.content:match(".*%s*(.*)")
+                local sayat = (function() 
+                    return (function() 
+                        local matched = message.content:match("(%w*)")
+                        local matched2 = message.content:match("%.*/(%w*)")
+                        if matched then 
+                            return matched
+                        else 
+                            return matched2
+                        end
+                    end))() 
+                end))() 
+
+
+                for _, guild in ipairs(client.guilds) do 
+                    for _, channel in ipairs(guild.channels) do 
+                        if channel.id==sayat then 
+                            channel:send(say)   
+                            return
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+
+
+
+
+
+
+        
     if message.author == client.user or message.author.id=="1191836718098296923" or message.author.id=="1191922358143942677" then comp = true return end
     if message.author.id == "821567060022132787" then
         if message.content == "/s1" then 
